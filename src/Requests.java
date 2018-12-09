@@ -56,6 +56,7 @@ public class Requests {
             String jsonURL = "https://www.glosbe.com/gapi/translate?from=" + apiParameters.getFrom() + "&dest=" +
                     apiParameters.getDest() + "&format=json&phrase=" + apiParameters.getPhraseToTranslate() + "&pretty=true";
             String jsonContent = getContent.getUrlContents(jsonURL);
+            System.out.println("\nURL: " + jsonURL + "\n");
 
             ObjectMapper translationMapper = new ObjectMapper();
             translationMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
