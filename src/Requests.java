@@ -11,14 +11,13 @@ public class Requests {
 
 
     public static void main(String[] args) {
-        //APIparameters apiParameters = new APIparameters();
+        APIparameters apiParameters = new APIparameters();
         CommunicationWithUser communicationWithUser = new CommunicationWithUser();
 
-        communicationWithUser.setTranslationWay();
+        communicationWithUser.setTranslationWay(apiParameters);
 
         while (true) {
             Scanner scanApiParam = new Scanner(System.in); //todo: make it global
-
             System.out.println("Put phrase to translate");
 
             //todo: it should use apiParameters created in CommunicationWithUser
