@@ -3,7 +3,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class GetContent {
+public class WebsiteProvider {
     String getUrlContents(String theUrl)
     {
         StringBuilder content = new StringBuilder();

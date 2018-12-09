@@ -1,46 +1,35 @@
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
-import java.util.Scanner;
-import java.lang.String;
 
 import static org.apache.commons.lang.StringEscapeUtils.unescapeXml;
 
-public class Requests {
+public class FlashcardsCreator {
 
+    String getJsonContent(APIparameters apiParameters, WebsiteProvider websiteProvider) {
+        /*  To get data visit /gapi/{functionName}[?[{functionParameter1}={value}
+             [&{functionParameter2}={value}[&{functionParameter3}={value}...]]]] page.
+             Example: Translate Polish 'witaj' into English, output format is json:
+             https://glosbe.com/gapi/translate?from=pol&dest=eng&format=json&phrase=witaj&pretty=true */
 
-    public static void main(String[] args) {
-        APIparameters apiParameters = new APIparameters();
-        CommunicationWithUser communicationWithUser = new CommunicationWithUser();
+        String jsonURL = "https://www.glosbe.com/gapi/translate?from=" + apiParameters.getFrom() + "&dest=" +
+                apiParameters.getDest() + "&format=json&phrase=" + apiParameters.getPhraseToTranslate() + "&pretty=true";
+        System.out.println("\nURL: " + jsonURL + "\n"); // only for debugging
+        return websiteProvider.getUrlContents(jsonURL);
+    }
 
-        communicationWithUser.setTranslationWay(apiParameters);
+    void getDataFromJson(APIparameters apiParameters, CommunicationWithUser communicationWithUser) {
 
         while (true) {
-            Scanner scanApiParam = new Scanner(System.in); //todo: make it global
-            System.out.println("Put phrase to translate");
-
-            //todo: it should use apiParameters created in CommunicationWithUser
-            apiParameters.setPhraseToTranslate(scanApiParam.next()); //error at reading value from scanner if other translations
-            //scanApiParam.close();
-
-            GetContent getContent = new GetContent();
-
-        /*  To get data visit /gapi/{functionName}[?[{functionParameter1}={value}
-         [&{functionParameter2}={value}[&{functionParameter3}={value}...]]]] page.
-         Example: Translate Polish 'witaj' into English, output format is json:
-         https://glosbe.com/gapi/translate?from=pol&dest=eng&format=json&phrase=witaj&pretty=true */
-
-            String jsonURL = "https://www.glosbe.com/gapi/translate?from=" + apiParameters.getFrom() + "&dest=" +
-                    apiParameters.getDest() + "&format=json&phrase=" + apiParameters.getPhraseToTranslate() + "&pretty=true";
-            String jsonContent = getContent.getUrlContents(jsonURL);
-            System.out.println("\nURL: " + jsonURL + "\n");
-
+            communicationWithUser.userSetPhraseToTranslate();
+            WebsiteProvider websiteProvider = new WebsiteProvider();
             ObjectMapper translationMapper = new ObjectMapper();
             translationMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             try {
 
-                JsonNode root = translationMapper.readTree(jsonContent);
+                JsonNode root = translationMapper.readTree(getJsonContent(apiParameters, websiteProvider));
 
                 JsonNode tuc = root.get("tuc"); // get() calls specific value in the array /tuc/0/meanings/0/text
                 JsonNode phrase = tuc.get(0).get("phrase");
@@ -50,10 +39,8 @@ public class Requests {
                 System.out.println("\t" + apiParameters.getPhraseToTranslate()); // print source phrase
                 System.out.println("\n\n BACK SIDE:\n\n");
                 System.out.println("\t" + textPhrase); //print translation
-
-
                 //for (enMeaningIndex = 0; !(tuc.get(0).get("meanings").get(enMeaningIndex).get("language").asText().equals("en")); enMeaningIndex++) {
-                 //   System.out.println("loop pass" + enMeaningIndex);
+                //   System.out.println("loop pass" + enMeaningIndex);
                 //}
 
                 int enMeaningIndex = 0;
@@ -75,6 +62,7 @@ public class Requests {
         }
 
     }
+    void printFlashcards() {
+
+    }
 }
-
-
