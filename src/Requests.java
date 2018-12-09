@@ -2,11 +2,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import java.io.IOException;
-
 import java.util.Scanner;
-import org.apache.commons.lang.StringEscapeUtils;
-import java.lang.Object;
-
 import java.lang.String;
 
 import static org.apache.commons.lang.StringEscapeUtils.unescapeXml;
@@ -15,34 +11,17 @@ public class Requests {
 
 
     public static void main(String[] args) {
-        int enMeaningIndex;
-        APIparameters apiParameters = new APIparameters();
+        //APIparameters apiParameters = new APIparameters();
+        CommunicationWithUser communicationWithUser = new CommunicationWithUser();
 
-        Scanner scanApiParam = new Scanner(System.in);
-        System.out.println("polish -> english\nchoose 1\nenglish->polish\nchoose 2\nother translation\nchoose 3");
-        int transWayChoice = scanApiParam.nextInt();
-
-        if (transWayChoice == 1) {
-            apiParameters.setFrom("pol");
-            apiParameters.setDest("eng");
-        }
-        else if (transWayChoice == 2) {
-
-            apiParameters.setFrom("eng");
-            apiParameters.setDest("pol");
-        }
-        //czy tu nie wystarczy jeden obiekt klasy Scanner?
-        else if (transWayChoice == 3) {
-            Scanner scanOtherTrans = new Scanner(System.in);
-            System.out.println("Use shortcuts like 'pol', 'fra', 'deu'\nPut language which you want translate from");
-            apiParameters.setFrom(scanOtherTrans.nextLine());
-            System.out.println("Put destination language");
-            apiParameters.setDest(scanOtherTrans.nextLine());
-            //scanOtherTrans.close(); // Why does it cause also closing of scanApiParam? Because it actually both close underlying stream 'System.in'
-        }
+        communicationWithUser.setTranslationWay();
 
         while (true) {
+            Scanner scanApiParam = new Scanner(System.in); //todo: make it global
+
             System.out.println("Put phrase to translate");
+
+            //todo: it should use apiParameters created in CommunicationWithUser
             apiParameters.setPhraseToTranslate(scanApiParam.next()); //error at reading value from scanner if other translations
             //scanApiParam.close();
 
@@ -68,16 +47,23 @@ public class Requests {
                 JsonNode phrase = tuc.get(0).get("phrase");
                 String textPhrase = phrase.get("text").asText();
 
-                System.out.println("\n------------------------------------\n\n\tFRONT:\n\n" + apiParameters.getPhraseToTranslate());
-                System.out.println("\n\n\tBACK:\n\n");
-                System.out.println("translation: " + textPhrase);
+                System.out.println("\n------------------------------------\n\n FRONT SIDE:\n");
+                System.out.println("\t" + apiParameters.getPhraseToTranslate()); // print source phrase
+                System.out.println("\n\n BACK SIDE:\n\n");
+                System.out.println("\t" + textPhrase); //print translation
 
 
-                for (enMeaningIndex = 0; !(tuc.get(0).get("meanings").get(enMeaningIndex).get("language").asText().equals("en")); enMeaningIndex++) {
-                    System.out.println("loop pass" + enMeaningIndex);
-                }
+                //for (enMeaningIndex = 0; !(tuc.get(0).get("meanings").get(enMeaningIndex).get("language").asText().equals("en")); enMeaningIndex++) {
+                 //   System.out.println("loop pass" + enMeaningIndex);
+                //}
+
+                int enMeaningIndex = 0;
+                //If translating phrase is not in polish, print meaning of this phrase
+                if (!(apiParameters.getFrom().equals("pol"))) {
+                    //todo: It sometimes prints meaning in polish e.g. choosing eng->pol and typing 'digit'.
                     String meaningsText = unescapeXml(tuc.get(0).get("meanings").get(enMeaningIndex).get("text").asText()); // skips entities like '&quot'
                     System.out.println("meaning: " + meaningsText);
+                }
 
 
                 System.out.println("\n----------------------------------");
