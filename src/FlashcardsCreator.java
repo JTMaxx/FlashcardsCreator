@@ -7,6 +7,7 @@ import java.io.IOException;
 import static org.apache.commons.lang.StringEscapeUtils.unescapeXml;
 
 public class FlashcardsCreator {
+    JSONmodel jsonModel = new JSONmodel();
 
     String getJsonContent(APIparameters apiParameters, WebsiteProvider websiteProvider) {
         /*  To get data visit /gapi/{functionName}[?[{functionParameter1}={value}
@@ -20,25 +21,14 @@ public class FlashcardsCreator {
         return websiteProvider.getUrlContents(jsonURL);
     }
 
-    void getDataFromJson(APIparameters apiParameters, CommunicationWithUser communicationWithUser) {
+    void printFlashcards(APIparameters apiParameters, CommunicationWithUser communicationWithUser) {
 
         while (true) {
-            communicationWithUser.userSetPhraseToTranslate();
-            WebsiteProvider websiteProvider = new WebsiteProvider();
-            ObjectMapper translationMapper = new ObjectMapper();
-            translationMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            try {
-
-                JsonNode root = translationMapper.readTree(getJsonContent(apiParameters, websiteProvider));
-
-                JsonNode tuc = root.get("tuc"); // get() calls specific value in the array /tuc/0/meanings/0/text
-                JsonNode phrase = tuc.get(0).get("phrase");
-                String textPhrase = phrase.get("text").asText();
-
+                getDataFromJSON(communicationWithUser, apiParameters);
                 System.out.println("\n------------------------------------\n\n FRONT SIDE:\n");
                 System.out.println("\t" + apiParameters.getPhraseToTranslate()); // print source phrase
                 System.out.println("\n\n BACK SIDE:\n\n");
-                System.out.println("\t" + textPhrase); //print translation
+                System.out.println("\t" + jsonModel.getTranslation()); //print translation
                 //for (enMeaningIndex = 0; !(tuc.get(0).get("meanings").get(enMeaningIndex).get("language").asText().equals("en")); enMeaningIndex++) {
                 //   System.out.println("loop pass" + enMeaningIndex);
                 //}
@@ -47,22 +37,44 @@ public class FlashcardsCreator {
                 //If translating phrase is not in polish, print meaning of this phrase
                 if (!(apiParameters.getFrom().equals("pol"))) {
                     //todo: It sometimes prints meaning in polish e.g. choosing eng->pol and typing 'digit'.
-                    String meaningsText = unescapeXml(tuc.get(0).get("meanings").get(enMeaningIndex).get("text").asText()); // skips entities like '&quot'
-                    System.out.println("meaning: " + meaningsText);
+                    System.out.println("meaning: " + jsonModel.getMeaning());
                 }
 
 
                 System.out.println("\n----------------------------------");
 
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
         }
 
     }
-    void printFlashcards() {
+    void getDataFromJSON(CommunicationWithUser communicationWithUser, APIparameters apiParameters) {
+        communicationWithUser.userSetPhraseToTranslate();
+        WebsiteProvider websiteProvider = new WebsiteProvider();
+        ObjectMapper translationMapper = new ObjectMapper();
+        translationMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+        try {
+
+            JsonNode root = translationMapper.readTree(getJsonContent(apiParameters, websiteProvider));
+
+            JsonNode tuc = root.get("tuc"); // get() calls specific value in the array /tuc/0/meanings/0/text
+            JsonNode phrase = tuc.get(0).get("phrase");
+
+            jsonModel.setTranslation(phrase.get("text").asText());
+
+            int enMeaningIndex = 0;
+            //for (enMeaningIndex = 0; !(tuc.get(0).get("meanings").get(enMeaningIndex).get("language").asText().equals("en")); enMeaningIndex++) {
+            //   System.out.println("loop pass" + enMeaningIndex);
+            //}
+
+            //If translating phrase is not in polish, print meaning of this phrase
+            jsonModel.setMeaning(unescapeXml(tuc.get(0).get("meanings").get(enMeaningIndex).get("text").asText())); // skips entities like '&quot'
+
+
+        }
+        catch (IOException e) {
+        e.printStackTrace();
+    }
+
 
     }
 }

@@ -7,7 +7,7 @@ public class Main {
         CommunicationWithUser communicationWithUser = new CommunicationWithUser();
         FlashcardsCreator flashcardsCreator = new FlashcardsCreator();
         communicationWithUser.setTranslationWay();
-        flashcardsCreator.getDataFromJson(communicationWithUser.apiParameters, communicationWithUser);
+        flashcardsCreator.printFlashcards(communicationWithUser.apiParameters, communicationWithUser);
 
 
 
