@@ -8,6 +8,8 @@ import static org.apache.commons.lang.StringEscapeUtils.unescapeXml;
 
 public class FlashcardsCreator {
     JSONmodel jsonModel = new JSONmodel();
+    WebsiteProvider websiteProvider = new WebsiteProvider();
+
 
     String getJsonTranslationContent(APIparameters apiParameters, WebsiteProvider websiteProvider) {
         /*  To get data visit /gapi/{functionName}[?[{functionParameter1}={value}
@@ -17,25 +19,25 @@ public class FlashcardsCreator {
 
         String jsonURL = "https://www.glosbe.com/gapi/translate?from=" + apiParameters.getFrom() + "&dest=" +
                 apiParameters.getDest() + "&format=json&phrase=" + apiParameters.getPhraseToTranslate() + "&pretty=true";
-        System.out.println("\nURL: " + jsonURL + "\n"); // only for debugging
+        System.out.println("\ntranslation URL: " + jsonURL + "\n"); // only for debugging
         return websiteProvider.getUrlContents(jsonURL);
     }
 
     String getJsonExampleContent(APIparameters apiParameters, WebsiteProvider websiteProvider) {
         String jsonURL = "https://glosbe.com/gapi/tm?from=" + apiParameters.getFrom() + "&dest=" + apiParameters.getDest()
                 + "&format=json&phrase=" + apiParameters.getPhraseToTranslate() + "&page=1&pretty=true";
-        System.out.println("\nURL: " + jsonURL + "\n"); // only for debugging
+        System.out.println("\nexample URL: " + jsonURL + "\n"); // only for debugging
         return websiteProvider.getUrlContents(jsonURL);
 
     }
 
-    void printFlashcards(APIparameters apiParameters, CommunicationWithUser communicationWithUser) {
+    void printFlashcards(APIparameters apiParameters, CommunicationWithUser communicationWithUser, WebsiteProvider websiteProvider) {
 
         while (true) {
                 getDataFromJSON(communicationWithUser, apiParameters);
                 System.out.println("\n------------------------------------\n\n FRONT SIDE:\n");
                 System.out.println("\t" + apiParameters.getPhraseToTranslate()); // print source phrase
-                System.out.println("\nexample: " + jsonModel.getExample());
+                System.out.println("\nexample: " + getExample(apiParameters, websiteProvider, "first"));
                 System.out.println("\n\n BACK SIDE:\n\n");
                 System.out.println("\t" + jsonModel.getTranslation()); //print translation
                 //for (enMeaningIndex = 0; !(tuc.get(0).get("meanings").get(enMeaningIndex).get("language").asText().equals("en")); enMeaningIndex++) {
@@ -49,7 +51,7 @@ public class FlashcardsCreator {
                     System.out.println("\nmeaning: " + jsonModel.getMeaning());
                 }
 
-                System.out.println("\nexample: " + jsonModel.getExample());
+                System.out.println("\nexample: " + getExample(apiParameters, websiteProvider, "second"));
 
 
 
@@ -60,7 +62,6 @@ public class FlashcardsCreator {
     }
     void getDataFromJSON(CommunicationWithUser communicationWithUser, APIparameters apiParameters) {
         communicationWithUser.userSetPhraseToTranslate();
-        WebsiteProvider websiteProvider = new WebsiteProvider();
         ObjectMapper translationMapper = new ObjectMapper();
 
         // Don't throw an exception when json has extra fields you are
@@ -68,8 +69,6 @@ public class FlashcardsCreator {
         // for deserialization and only care about a portion of the json
         translationMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-        ObjectMapper exampleMapper = new ObjectMapper();
-        exampleMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         try {
 
@@ -84,15 +83,24 @@ public class FlashcardsCreator {
             //}
             jsonModel.setMeaning(unescapeXml(tuc.get(0).get("meanings").get(enMeaningIndex).get("text").asText())); // unescapeXml skips entities like '&quot'
 
-            JsonNode exampleRoot = exampleMapper.readTree(getJsonExampleContent(apiParameters, websiteProvider));
 
-            //if (apiParameters.getFrom())
-            jsonModel.setExample(exampleRoot.get("examples").get(0).get("second").asText());
         }
         catch (IOException e) {
         e.printStackTrace();
     }
-
-
     }
+
+    String getExample(APIparameters apiParameters, WebsiteProvider websiteProvider, String exampleLanguage) {
+        ObjectMapper exampleMapper = new ObjectMapper();
+        exampleMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+        try {
+            JsonNode exampleRoot = exampleMapper.readTree(getJsonExampleContent(apiParameters, websiteProvider));
+            return exampleRoot.get("examples").get(0).get(exampleLanguage).asText();
+
+        }
+        catch (IOException e) { e.printStackTrace(); }
+        return "FlashcardCreator.getExample() IOException";
+    }
+
 }

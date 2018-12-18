@@ -21,12 +21,4 @@ public class JSONmodel {
     public void setMeaning(String meaning) {
         this.meaning = meaning;
     }
-
-    public String getExample() {
-        return example;
-    }
-
-    public void setExample(String example) {
-        this.example = example;
-    }
 }
