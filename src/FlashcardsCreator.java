@@ -35,6 +35,7 @@ public class FlashcardsCreator {
                 getDataFromJSON(communicationWithUser, apiParameters);
                 System.out.println("\n------------------------------------\n\n FRONT SIDE:\n");
                 System.out.println("\t" + apiParameters.getPhraseToTranslate()); // print source phrase
+                System.out.println("\nexample: " + jsonModel.getExample());
                 System.out.println("\n\n BACK SIDE:\n\n");
                 System.out.println("\t" + jsonModel.getTranslation()); //print translation
                 //for (enMeaningIndex = 0; !(tuc.get(0).get("meanings").get(enMeaningIndex).get("language").asText().equals("en")); enMeaningIndex++) {
@@ -42,15 +43,17 @@ public class FlashcardsCreator {
                 //}
 
                 int enMeaningIndex = 0;
-                //If translating phrase is not in polish, print meaning and example of this phrase
+                //If translating phrase is not in polish, print meaning of this phrase
                 if (!(apiParameters.getFrom().equals("pol"))) {
                     //todo: It sometimes prints meaning in polish e.g. choosing eng->pol and typing 'digit'.
                     System.out.println("\nmeaning: " + jsonModel.getMeaning());
-                    System.out.println("\nexample: " + jsonModel.getExample());
                 }
 
+                System.out.println("\nexample: " + jsonModel.getExample());
 
-                System.out.println("\n----------------------------------");
+
+
+            System.out.println("\n----------------------------------");
 
         }
 
@@ -82,7 +85,9 @@ public class FlashcardsCreator {
             jsonModel.setMeaning(unescapeXml(tuc.get(0).get("meanings").get(enMeaningIndex).get("text").asText())); // unescapeXml skips entities like '&quot'
 
             JsonNode exampleRoot = exampleMapper.readTree(getJsonExampleContent(apiParameters, websiteProvider));
-            jsonModel.setExample(exampleRoot.get("examples").get(0).get("first").asText());
+
+            //if (apiParameters.getFrom())
+            jsonModel.setExample(exampleRoot.get("examples").get(0).get("second").asText());
         }
         catch (IOException e) {
         e.printStackTrace();
