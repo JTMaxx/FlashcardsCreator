@@ -1,10 +1,11 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class JSONmodel {
     private String translation;
     private String meaning;
-    private String example;
 
     public String getTranslation() {
         return translation;

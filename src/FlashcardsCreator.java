@@ -3,6 +3,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 import static org.apache.commons.lang.StringEscapeUtils.unescapeXml;
 
@@ -37,21 +41,29 @@ public class FlashcardsCreator {
                 getDataFromJSON(communicationWithUser, apiParameters);
                 System.out.println("\n------------------------------------\n\n FRONT SIDE:\n");
                 System.out.println("\t" + apiParameters.getPhraseToTranslate()); // print source phrase
-                System.out.println("\nexample: " + getExample(apiParameters, websiteProvider, "first"));
+
+                //todo: szybsze rozwiązanie: https://stackoverflow.com/questions/46898/how-to-efficiently-iterate-over-each-entry-in-a-java-map
+                Set set = getExamples(apiParameters, websiteProvider).entrySet();
+                Iterator iterator = set.iterator();
+                while(iterator.hasNext()) {
+                    Map.Entry mentry = (Map.Entry)iterator.next();
+                    System.out.println("\nexample: " + mentry.getKey());
+                }
+                
                 System.out.println("\n\n BACK SIDE:\n\n");
                 System.out.println("\t" + jsonModel.getTranslation()); //print translation
-                //for (enMeaningIndex = 0; !(tuc.get(0).get("meanings").get(enMeaningIndex).get("language").asText().equals("en")); enMeaningIndex++) {
-                //   System.out.println("loop pass" + enMeaningIndex);
-                //}
 
-                int enMeaningIndex = 0;
-                //If translating phrase is not in polish, print meaning of this phrase
                 if (!(apiParameters.getFrom().equals("pol"))) {
-                    //todo: It sometimes prints meaning in polish e.g. choosing eng->pol and typing 'digit'.
-                    System.out.println("\nmeaning: " + jsonModel.getMeaning());
+                    System.out.println("\nmeaning: " + jsonModel.getMeaning()); //print meaning
                 }
 
-                System.out.println("\nexample: " + getExample(apiParameters, websiteProvider, "second"));
+                iterator = set.iterator();
+                while(iterator.hasNext()) {
+                    Map.Entry mentry = (Map.Entry)iterator.next();
+                    System.out.println("\nexample: " + mentry.getValue()); //print example
+
+                }
+
 
 
 
@@ -90,17 +102,30 @@ public class FlashcardsCreator {
     }
     }
 
-    String getExample(APIparameters apiParameters, WebsiteProvider websiteProvider, String exampleLanguage) {
+    Map<String, String> getExamples(APIparameters apiParameters, WebsiteProvider websiteProvider) {
+        Map<String, String> examples = new HashMap();
+
         ObjectMapper exampleMapper = new ObjectMapper();
         exampleMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
+        //Map.Entry<String, String> example;
+//        long i = 0;
+//        Iterator<Map.Entry<String, String>> it = examples.entrySet().iterator();
+//        while (it.hasNext() && it < 3) {
+//            Map.Entry<String, String> pair = it.next();
+//            i += pair.getKey() + pair.getValue();
+//        }
+
         try {
             JsonNode exampleRoot = exampleMapper.readTree(getJsonExampleContent(apiParameters, websiteProvider));
-            return exampleRoot.get("examples").get(0).get(exampleLanguage).asText();
+            for (int i = 0; i < 3; i++) {
+                examples.put(exampleRoot.get("examples").get(i).get("first").asText(), exampleRoot.get("examples").get(i).get("second").asText());
+            }
 
         }
         catch (IOException e) { e.printStackTrace(); }
-        return "FlashcardCreator.getExample() IOException";
+
+        return examples;
     }
 
 }
