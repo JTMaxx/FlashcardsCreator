@@ -1,3 +1,5 @@
+package com.jtm.FCCweb.FCCweb;
+
 import java.util.Scanner;
 
 public class CommunicationWithUser {

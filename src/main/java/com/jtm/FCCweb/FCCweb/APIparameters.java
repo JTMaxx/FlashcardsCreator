@@ -1,3 +1,5 @@
+package com.jtm.FCCweb.FCCweb;
+
 public class APIparameters {
     private String from, dest, phraseToTranslate;
 
