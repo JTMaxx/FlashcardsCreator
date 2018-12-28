@@ -1,6 +1,6 @@
 package com.jtm.FCCweb.FCCweb;
 
-public class APIparameters {
+public class GlosbeAPItranslationModel {
     private String from, dest, phraseToTranslate;
 
     public void setFrom(String from) { this.from = from; }

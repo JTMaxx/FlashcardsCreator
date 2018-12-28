@@ -3,7 +3,7 @@ package com.jtm.FCCweb.FCCweb;
 import java.util.Scanner;
 
 public class CommunicationWithUser {
-   APIparameters apiParameters = new APIparameters();
+   GlosbeAPItranslationModel apiParameters = new GlosbeAPItranslationModel();
 
     void setTranslationWay() {
         Scanner scanTransWay = new Scanner(System.in);

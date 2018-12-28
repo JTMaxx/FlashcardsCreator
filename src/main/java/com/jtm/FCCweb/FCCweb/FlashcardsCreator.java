@@ -18,7 +18,7 @@ public class FlashcardsCreator {
     WebsiteProvider websiteProvider = new WebsiteProvider();
 
 
-    String getJsonTranslationContent(APIparameters apiParameters, WebsiteProvider websiteProvider) {
+    String getJsonTranslationContent(GlosbeAPItranslationModel apiParameters, WebsiteProvider websiteProvider) {
         /*  To get data visit /gapi/{functionName}[?[{functionParameter1}={value}
              [&{functionParameter2}={value}[&{functionParameter3}={value}...]]]] page.
              Example: Translate Polish 'witaj' into English, output format is json:
@@ -30,7 +30,7 @@ public class FlashcardsCreator {
         return websiteProvider.getUrlContents(jsonURL);
     }
 
-    String getJsonExampleContent(APIparameters apiParameters, WebsiteProvider websiteProvider) {
+    String getJsonExampleContent(GlosbeAPItranslationModel apiParameters, WebsiteProvider websiteProvider) {
         String jsonURL = "https://glosbe.com/gapi/tm?from=" + apiParameters.getFrom() + "&dest=" + apiParameters.getDest()
                 + "&format=json&phrase=" + apiParameters.getPhraseToTranslate() + "&page=1&pretty=true";
         System.out.println("\nexample URL: " + jsonURL + "\n"); // only for debugging
@@ -38,7 +38,7 @@ public class FlashcardsCreator {
 
     }
 
-    void printFlashcards(APIparameters apiParameters, CommunicationWithUser communicationWithUser, WebsiteProvider websiteProvider) {
+    void printFlashcards(GlosbeAPItranslationModel apiParameters, CommunicationWithUser communicationWithUser, WebsiteProvider websiteProvider) {
 
         while (true) {
                 getDataFromJSON(communicationWithUser, apiParameters);
@@ -75,7 +75,7 @@ public class FlashcardsCreator {
         }
 
     }
-    void getDataFromJSON(CommunicationWithUser communicationWithUser, APIparameters apiParameters) {
+    void getDataFromJSON(CommunicationWithUser communicationWithUser, GlosbeAPItranslationModel apiParameters) {
         communicationWithUser.userSetPhraseToTranslate();
         ObjectMapper translationMapper = new ObjectMapper();
 
@@ -105,7 +105,7 @@ public class FlashcardsCreator {
     }
     }
 
-    Map<String, String> getExamples(APIparameters apiParameters, WebsiteProvider websiteProvider) {
+    Map<String, String> getExamples(GlosbeAPItranslationModel apiParameters, WebsiteProvider websiteProvider) {
         Map<String, String> examples = new HashMap();
 
         ObjectMapper exampleMapper = new ObjectMapper();
