@@ -29,11 +29,11 @@ public class CommunicationWithUser {
         }
     }
 
-    void userSetPhraseToTranslate() {
-        Scanner scanApiParam = new Scanner(System.in);
-        System.out.println("Put phrase to translate");
-        apiParameters.setPhraseToTranslate(scanApiParam.next()); //error at reading value from scanner if other translations
-        //scanApiParam.close();
-    }
+//    void userSetPhraseToTranslate() {
+//        Scanner scanApiParam = new Scanner(System.in);
+//        System.out.println("Put phrase to translate");
+//        apiParameters.setPhraseToTranslate(scanApiParam.next()); //error at reading value from scanner if other translations
+//        //scanApiParam.close();
+//    }
 
 }

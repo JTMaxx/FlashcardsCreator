@@ -3,6 +3,7 @@ package com.jtm.FCCweb.FCCweb;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jtm.FCCweb.FCCweb.model.FCmaker;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -16,6 +17,7 @@ import static org.apache.commons.lang.StringEscapeUtils.unescapeXml;
 public class FlashcardsCreator {
     JSONmodel jsonModel = new JSONmodel();
     WebsiteProvider websiteProvider = new WebsiteProvider();
+    FCmaker fcMaker = new FCmaker();
 
 
     String getJsonTranslationContent(GlosbeAPItranslationModel apiParameters, WebsiteProvider websiteProvider) {
@@ -25,14 +27,14 @@ public class FlashcardsCreator {
              https://glosbe.com/gapi/translate?from=pol&dest=eng&format=json&phrase=witaj&pretty=true */
 
         String jsonURL = "https://www.glosbe.com/gapi/translate?from=" + apiParameters.getFrom() + "&dest=" +
-                apiParameters.getDest() + "&format=json&phrase=" + apiParameters.getPhraseToTranslate() + "&pretty=true";
+                apiParameters.getDest() + "&format=json&phrase=" + fcMaker.getPhraseToTranslate() + "&pretty=true";
         System.out.println("\ntranslation URL: " + jsonURL + "\n"); // only for debugging
         return websiteProvider.getUrlContents(jsonURL);
     }
 
     String getJsonExampleContent(GlosbeAPItranslationModel apiParameters, WebsiteProvider websiteProvider) {
         String jsonURL = "https://glosbe.com/gapi/tm?from=" + apiParameters.getFrom() + "&dest=" + apiParameters.getDest()
-                + "&format=json&phrase=" + apiParameters.getPhraseToTranslate() + "&page=1&pretty=true";
+                + "&format=json&phrase=" + fcMaker.getPhraseToTranslate() + "&page=1&pretty=true";
         System.out.println("\nexample URL: " + jsonURL + "\n"); // only for debugging
         return websiteProvider.getUrlContents(jsonURL);
 
@@ -43,7 +45,7 @@ public class FlashcardsCreator {
         while (true) {
                 getDataFromJSON(communicationWithUser, apiParameters);
                 System.out.println("\n------------------------------------\n\n FRONT SIDE:\n");
-                System.out.println("\t" + apiParameters.getPhraseToTranslate()); // print source phrase
+                System.out.println("\t" + fcMaker.getPhraseToTranslate()); // print source phrase
 
                 //todo: szybsze rozwiązanie: https://stackoverflow.com/questions/46898/how-to-efficiently-iterate-over-each-entry-in-a-java-map
                 Set set = getExamples(apiParameters, websiteProvider).entrySet();
@@ -76,7 +78,7 @@ public class FlashcardsCreator {
 
     }
     void getDataFromJSON(CommunicationWithUser communicationWithUser, GlosbeAPItranslationModel apiParameters) {
-        communicationWithUser.userSetPhraseToTranslate();
+        //fcMaker.getPhraseToTranslate();
         ObjectMapper translationMapper = new ObjectMapper();
 
         // Don't throw an exception when json has extra fields you are
