@@ -44,6 +44,7 @@ public class FlashcardsCreator {
 
         while (true) {
                 getDataFromJSON(communicationWithUser, apiParameters);
+                while (fcMaker.getPhraseToTranslate() == null) {}
                 System.out.println("\n------------------------------------\n\n FRONT SIDE:\n");
                 System.out.println("\t" + fcMaker.getPhraseToTranslate()); // print source phrase
 
@@ -77,8 +78,9 @@ public class FlashcardsCreator {
         }
 
     }
-    void getDataFromJSON(CommunicationWithUser communicationWithUser, GlosbeAPItranslationModel apiParameters) {
-        //fcMaker.getPhraseToTranslate();
+    void getDataFromJSON(CommunicationWithUser communicationWithUser, GlosbeAPItranslationModel glosbeAPItranslationModel) {
+
+        //fcMaker.getPhraseToTranslate(); //todo: tu było wcześniej getPhraseToTranslate from communicationWithUser, co użyć teraz w zamian?
         ObjectMapper translationMapper = new ObjectMapper();
 
         // Don't throw an exception when json has extra fields you are
@@ -89,7 +91,7 @@ public class FlashcardsCreator {
 
         try {
 
-            JsonNode translationRoot = translationMapper.readTree(getJsonTranslationContent(apiParameters, websiteProvider));
+            JsonNode translationRoot = translationMapper.readTree(getJsonTranslationContent(glosbeAPItranslationModel, websiteProvider));
 
             JsonNode tuc = translationRoot.get("tuc"); // get() calls specific value in the array /tuc/0/meanings/0/text
             JsonNode phrase = tuc.get(0).get("phrase");
@@ -107,22 +109,14 @@ public class FlashcardsCreator {
     }
     }
 
-    Map<String, String> getExamples(GlosbeAPItranslationModel apiParameters, WebsiteProvider websiteProvider) {
+    Map<String, String> getExamples(GlosbeAPItranslationModel glosbeAPItranslationModel, WebsiteProvider websiteProvider) {
         Map<String, String> examples = new HashMap();
 
         ObjectMapper exampleMapper = new ObjectMapper();
         exampleMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-        //Map.Entry<String, String> example;
-//        long i = 0;
-//        Iterator<Map.Entry<String, String>> it = examples.entrySet().iterator();
-//        while (it.hasNext() && it < 3) {
-//            Map.Entry<String, String> pair = it.next();
-//            i += pair.getKey() + pair.getValue();
-//        }
-
         try {
-            JsonNode exampleRoot = exampleMapper.readTree(getJsonExampleContent(apiParameters, websiteProvider));
+            JsonNode exampleRoot = exampleMapper.readTree(getJsonExampleContent(glosbeAPItranslationModel, websiteProvider));
             for (int i = 0; i < 3; i++) {
                 examples.put(exampleRoot.get("examples").get(i).get("first").asText(), exampleRoot.get("examples").get(i).get("second").asText());
             }

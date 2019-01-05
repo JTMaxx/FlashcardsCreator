@@ -5,9 +5,10 @@
     <title>Create a flashcard</title>
 </head>
 <body>
-    <form action="#" th:action="@{/index}" th:object="${fcMaker}" method="post">
+    <form action="#" th:action="@{/fcmaker}" th:object="${fcmaker}" method="post"> <!-- here must be fcmaker, not: fcMaker -->
         <p>Create a flashcard</p>
-        <input type="text" th:field="*{phraseToTranslate}"/>
+        <p>Phrase to translate:<input type="text" th:field="*{phraseToTranslate}"/></p>
+        <p><input type="submit" value="Submit" /></p>
     </form>
 </body>
 </html>
