@@ -18,6 +18,6 @@ public class FccController {
 
     @PostMapping("/fcmaker")
     public String fcMakerSubmit(@ModelAttribute FCmaker fcMaker) {
-        return "fcmaker";
+        return "result";
     }
 }
