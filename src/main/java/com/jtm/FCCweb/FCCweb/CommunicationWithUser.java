@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class CommunicationWithUser {
    GlosbeAPItranslationModel apiParameters = new GlosbeAPItranslationModel();
 
+   //todo: make this method getter instead of setter and call it anywhere!
     void setTranslationWay() {
         Scanner scanTransWay = new Scanner(System.in);
         System.out.println("polish -> english\nchoose 1\nenglish->polish\nchoose 2\nother translation\nchoose 3");

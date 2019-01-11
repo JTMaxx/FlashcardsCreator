@@ -10,10 +10,10 @@ public class Main {
 
 		SpringApplication.run(Main.class, args);
 
-		CommunicationWithUser communicationWithUser = new CommunicationWithUser();
-		FlashcardsCreator flashcardsCreator = new FlashcardsCreator();
-		communicationWithUser.setTranslationWay();
-		flashcardsCreator.printFlashcards(communicationWithUser.apiParameters, communicationWithUser, flashcardsCreator.websiteProvider);
+//		CommunicationWithUser communicationWithUser = new CommunicationWithUser();
+//		FlashcardsCreator flashcardsCreator = new FlashcardsCreator();
+//		communicationWithUser.setTranslationWay();
+//		flashcardsCreator.printFlashcards(communicationWithUser.apiParameters, communicationWithUser, flashcardsCreator.websiteProvider);
 	}
 
 }

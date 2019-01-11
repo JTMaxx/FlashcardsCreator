@@ -39,16 +39,16 @@ public class FlashcardsCreator {
 
     }
 
-    void printFlashcards(GlosbeAPItranslationModel apiParameters, CommunicationWithUser communicationWithUser, WebsiteProvider websiteProvider) {
+    void printFlashcards(GlosbeAPItranslationModel glosbeAPItranslationModel, CommunicationWithUser communicationWithUser, WebsiteProvider websiteProvider) {
 
         while (true) {
-                getDataFromJSON(communicationWithUser, apiParameters);
+                getDataFromJSON(communicationWithUser, glosbeAPItranslationModel);
                 while (fcMaker.getPhraseToTranslate() == null) {}
                 System.out.println("\n------------------------------------\n\n FRONT SIDE:\n");
                 System.out.println("\t" + fcMaker.getPhraseToTranslate()); // print source phrase
 
                 //todo: szybsze rozwiązanie: https://stackoverflow.com/questions/46898/how-to-efficiently-iterate-over-each-entry-in-a-java-map
-                Set set = getExamples(apiParameters, websiteProvider).entrySet();
+                Set set = getExamples(glosbeAPItranslationModel, websiteProvider).entrySet();
                 Iterator iterator = set.iterator();
                 while(iterator.hasNext()) {
                     Map.Entry mentry = (Map.Entry)iterator.next();
@@ -58,7 +58,7 @@ public class FlashcardsCreator {
                 System.out.println("\n\n BACK SIDE:\n\n");
                 System.out.println("\t" + fcMaker.getTranslation()); //print translation
 
-                if (!(apiParameters.getFrom().equals("pol"))) {
+                if (!(glosbeAPItranslationModel.getFrom().equals("pol"))) {
                     System.out.println("\nmeaning: " + fcMaker.getMeaning()); //print meaning
                 }
 

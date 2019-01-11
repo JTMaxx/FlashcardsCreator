@@ -8,6 +8,7 @@
     <form action="#" th:action="@{/fcmaker}" th:object="${fcmaker}" method="post"> <!-- here must be fcmaker, not: fcMaker -->
         <p>Create a flashcard</p>
         <p>Phrase to translate:<input type="text" th:field="*{phraseToTranslate}"/></p>
+        <p>Translation way:<input type="radio" </p>
         <p><input type="submit" value="Submit" /></p>
     </form>
 </body>
