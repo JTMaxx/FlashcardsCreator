@@ -15,7 +15,6 @@ import static org.apache.commons.lang.StringEscapeUtils.unescapeXml;
 
 
 public class FlashcardsCreator {
-    JSONmodel jsonModel = new JSONmodel();
     WebsiteProvider websiteProvider = new WebsiteProvider();
     FCmaker fcMaker = new FCmaker();
 
@@ -57,10 +56,10 @@ public class FlashcardsCreator {
                 }
                 
                 System.out.println("\n\n BACK SIDE:\n\n");
-                System.out.println("\t" + jsonModel.getTranslation()); //print translation
+                System.out.println("\t" + fcMaker.getTranslation()); //print translation
 
                 if (!(apiParameters.getFrom().equals("pol"))) {
-                    System.out.println("\nmeaning: " + jsonModel.getMeaning()); //print meaning
+                    System.out.println("\nmeaning: " + fcMaker.getMeaning()); //print meaning
                 }
 
                 iterator = set.iterator();
@@ -95,12 +94,12 @@ public class FlashcardsCreator {
 
             JsonNode tuc = translationRoot.get("tuc"); // get() calls specific value in the array /tuc/0/meanings/0/text
             JsonNode phrase = tuc.get(0).get("phrase");
-            jsonModel.setTranslation(phrase.get("text").asText());
+            fcMaker.setTranslation(phrase.get("text").asText());
             int enMeaningIndex = 0;
             //for (enMeaningIndex = 0; !(tuc.get(0).get("meanings").get(enMeaningIndex).get("language").asText().equals("en")); enMeaningIndex++) {
             //   System.out.println("loop pass" + enMeaningIndex);
             //}
-            jsonModel.setMeaning(unescapeXml(tuc.get(0).get("meanings").get(enMeaningIndex).get("text").asText())); // unescapeXml skips entities like '&quot'
+            fcMaker.setMeaning(unescapeXml(tuc.get(0).get("meanings").get(enMeaningIndex).get("text").asText())); // unescapeXml skips entities like '&quot'
 
 
         }

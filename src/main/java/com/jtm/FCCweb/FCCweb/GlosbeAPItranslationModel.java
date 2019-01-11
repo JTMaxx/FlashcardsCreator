@@ -3,7 +3,6 @@ package com.jtm.FCCweb.FCCweb;
 public class GlosbeAPItranslationModel {
     private String from;
     private String dest;
-//    private String phraseToTranslate;
 
     public void setFrom(String from) { this.from = from; }
 
@@ -12,14 +11,4 @@ public class GlosbeAPItranslationModel {
     public void setDest(String dest) { this.dest = dest; }
 
     String getDest() { return dest; }
-
-//    public void setPhraseToTranslate(String phraseToTranslate) { this.phraseToTranslate = phraseToTranslate; }
-//
-//    String getPhraseToTranslate() { return phraseToTranslate; }
-
-    //public void setFront(String front) {front = phraseToTranslate; }
-
-    //String getFront() { return phraseToTranslate; }
-
-
 }

@@ -15,7 +15,24 @@ public class FCmaker {
     private Integer id;
     private String phraseToTranslate;
 
-    private
+    private String translation;
+    private String meaning;
+
+    public String getTranslation() {
+        return translation;
+    }
+
+    public void setTranslation(String translation) {
+        this.translation = translation;
+    }
+
+    public String getMeaning() {
+        return meaning;
+    }
+
+    public void setMeaning(String meaning) {
+        this.meaning = meaning;
+    }
 
     public void setPhraseToTranslate(String phraseToTranslate) { this.phraseToTranslate = phraseToTranslate; }
 
