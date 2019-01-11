@@ -1,7 +1,6 @@
 package com.jtm.FCCweb.FCCweb.model;
 
-import org.springframework.data.annotation.Id;
-
+import javax.persistence.Id;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +14,8 @@ public class FCmaker {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String phraseToTranslate;
+
+    private
 
     public void setPhraseToTranslate(String phraseToTranslate) { this.phraseToTranslate = phraseToTranslate; }
 
