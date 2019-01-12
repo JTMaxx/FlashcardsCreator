@@ -3,7 +3,7 @@ package com.jtm.FCCweb.FCCweb;
 import java.util.Scanner;
 
 public class CommunicationWithUser {
-   GlosbeAPItranslationModel apiParameters = new GlosbeAPItranslationModel();
+   GlosbeAPItranslationModel glosbeAPItranslationModel = new GlosbeAPItranslationModel();
 
    //todo: make this method getter instead of setter and call it anywhere!
     void setTranslationWay() {
@@ -12,20 +12,20 @@ public class CommunicationWithUser {
         int transWayChoice = scanTransWay.nextInt();
 
         if (transWayChoice == 1) {
-            apiParameters.setFrom("pol");
-            apiParameters.setDest("eng");
+            glosbeAPItranslationModel.setFrom("pol");
+            glosbeAPItranslationModel.setDest("eng");
         }
         else if (transWayChoice == 2) {
 
-            apiParameters.setFrom("eng");
-            apiParameters.setDest("pol");
+            glosbeAPItranslationModel.setFrom("eng");
+            glosbeAPItranslationModel.setDest("pol");
         }
         else if (transWayChoice == 3) {
             Scanner scanOtherTrans = new Scanner(System.in);
             System.out.println("Use shortcuts like 'pol', 'fra', 'deu'\nPut language which you want translate from");
-            apiParameters.setFrom(scanOtherTrans.nextLine());
+            glosbeAPItranslationModel.setFrom(scanOtherTrans.nextLine());
             System.out.println("Put destination language");
-            apiParameters.setDest(scanOtherTrans.nextLine());
+            glosbeAPItranslationModel.setDest(scanOtherTrans.nextLine());
             //scanOtherTrans.close(); // Why does it cause also closing of scanApiParam? Because it actually close both (scanOtherTrans and scanApiParam) underlying stream 'System.in'
         }
     }
@@ -33,7 +33,7 @@ public class CommunicationWithUser {
 //    void userSetPhraseToTranslate() {
 //        Scanner scanApiParam = new Scanner(System.in);
 //        System.out.println("Put phrase to translate");
-//        apiParameters.setPhraseToTranslate(scanApiParam.next()); //error at reading value from scanner if other translations
+//        glosbeAPItranslationModel.setPhraseToTranslate(scanApiParam.next()); //error at reading value from scanner if other translations
 //        //scanApiParam.close();
 //    }
 

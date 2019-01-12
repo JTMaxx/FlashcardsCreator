@@ -42,8 +42,8 @@ public class FlashcardsCreator {
     void printFlashcards(GlosbeAPItranslationModel glosbeAPItranslationModel, CommunicationWithUser communicationWithUser, WebsiteProvider websiteProvider) {
 
         while (true) {
+            while (glosbeAPItranslationModel.getDest() == null) {}
                 getDataFromJSON(communicationWithUser, glosbeAPItranslationModel);
-                while (fcMaker.getPhraseToTranslate() == null) {}
                 System.out.println("\n------------------------------------\n\n FRONT SIDE:\n");
                 System.out.println("\t" + fcMaker.getPhraseToTranslate()); // print source phrase
 

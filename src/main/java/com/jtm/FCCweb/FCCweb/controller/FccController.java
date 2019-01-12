@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -27,5 +29,14 @@ public class FccController {
     public String fcMakerSubmit(@ModelAttribute FCmaker fcMaker) {
         fcrepository.save(fcMaker);
         return "result";
+    }
+
+    @ModelAttribute("transAllWays")
+    List<String> getTransAllWays() {
+        List<String> transAllWays = new ArrayList<>();
+        transAllWays.add("pol>>eng");
+        transAllWays.add("eng>>pol");
+
+        return transAllWays;
     }
 }
