@@ -38,12 +38,23 @@ public class FlashcardsCreator {
         return websiteProvider.getUrlContents(jsonURL);
 
     }
+    void saveFlashcards(GlosbeAPItranslationModel glosbeAPItranslationModel, WebsiteProvider websiteProvider) {
+        getDataFromJSON(glosbeAPItranslationModel);
 
-    void printFlashcards(GlosbeAPItranslationModel glosbeAPItranslationModel, CommunicationWithUser communicationWithUser, WebsiteProvider websiteProvider) {
+        //todo: szybsze rozwiązanie: https://stackoverflow.com/questions/46898/how-to-efficiently-iterate-over-each-entry-in-a-java-map
+        Set set = getExamples(glosbeAPItranslationModel, websiteProvider).entrySet();
+        Iterator iterator = set.iterator();
+//        while(iterator.hasNext()) {
+//            Map.Entry mentry = (Map.Entry)iterator.next();
+//            fcMaker.addExample(mentry.getKey(), mentry.getValue());
+//        }
+    }
+
+    void printFlashcards(GlosbeAPItranslationModel glosbeAPItranslationModel, WebsiteProvider websiteProvider) {
 
         while (true) {
-            while (glosbeAPItranslationModel.getDest() == null) {}
-                getDataFromJSON(communicationWithUser, glosbeAPItranslationModel);
+            //while (fcMaker.getPhraseToTranslate() == null) {}
+                getDataFromJSON(glosbeAPItranslationModel);
                 System.out.println("\n------------------------------------\n\n FRONT SIDE:\n");
                 System.out.println("\t" + fcMaker.getPhraseToTranslate()); // print source phrase
 
@@ -77,7 +88,7 @@ public class FlashcardsCreator {
         }
 
     }
-    void getDataFromJSON(CommunicationWithUser communicationWithUser, GlosbeAPItranslationModel glosbeAPItranslationModel) {
+  public void getDataFromJSON(GlosbeAPItranslationModel glosbeAPItranslationModel) {
 
         //fcMaker.getPhraseToTranslate(); //todo: tu było wcześniej getPhraseToTranslate from communicationWithUser, co użyć teraz w zamian?
         ObjectMapper translationMapper = new ObjectMapper();

@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import java.util.Map;
 
 
 @Entity
@@ -25,6 +26,22 @@ public class FCmaker {
 
     private String translation;
     private String meaning;
+//    private Map.Entry<String, String> examplesMap = new Map.Entry<String, String>() {
+//        @Override
+//        public String getKey() {
+//            return null;
+//        }
+//
+//        @Override
+//        public String getValue() {
+//            return null;
+//        }
+//
+//        @Override
+//        public String setValue(String value) {
+//            return null;
+//        }
+//    }
 
 
 }

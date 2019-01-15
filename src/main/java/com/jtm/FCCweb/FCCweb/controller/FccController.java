@@ -1,5 +1,7 @@
 package com.jtm.FCCweb.FCCweb.controller;
 
+import com.jtm.FCCweb.FCCweb.FlashcardsCreator;
+import com.jtm.FCCweb.FCCweb.GlosbeAPItranslationModel;
 import com.jtm.FCCweb.FCCweb.model.FCmaker;
 import com.jtm.FCCweb.FCCweb.repository.FCrepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class FccController {
+
+    FlashcardsCreator flashcardsCreator = new FlashcardsCreator();
+    GlosbeAPItranslationModel glosbeAPItranslationModel = new GlosbeAPItranslationModel();
 
     @Autowired
     private FCrepository fcrepository;
@@ -27,6 +31,7 @@ public class FccController {
 
     @PostMapping("/fcmaker")
     public String fcMakerSubmit(@ModelAttribute FCmaker fcMaker) {
+        flashcardsCreator.getDataFromJSON(glosbeAPItranslationModel);
         fcrepository.save(fcMaker);
         return "result";
     }
