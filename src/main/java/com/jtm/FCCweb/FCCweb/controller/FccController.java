@@ -34,8 +34,8 @@ public class FccController {
     @ModelAttribute("transAllWays")
     List<String> getTransAllWays() {
         List<String> transAllWays = new ArrayList<>();
-        transAllWays.add("pol>>eng");
-        transAllWays.add("eng>>pol");
+        transAllWays.add("pol -> eng");
+        transAllWays.add("eng -> pol");
 
         return transAllWays;
     }
