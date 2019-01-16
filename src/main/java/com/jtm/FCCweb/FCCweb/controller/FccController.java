@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class FccController {
@@ -36,12 +38,21 @@ public class FccController {
         return "result";
     }
 
-    @ModelAttribute("transAllWays")
-    List<String> getTransAllWays() {
-        List<String> transAllWays = new ArrayList<>();
-        transAllWays.add("pol -> eng");
-        transAllWays.add("eng -> pol");
+    @ModelAttribute("fromLanguages")
+    public Map<String,String> getFromLanguages()    {
 
-        return transAllWays;
+        Map<String,String> fromLanguages = new HashMap<String, String>();
+        fromLanguages.put("eng","english");
+        fromLanguages.put("pol","polish");
+        return fromLanguages;
+    }
+
+    @ModelAttribute("destLanguages")
+    public Map<String,String> getDestLanguages()    {
+
+        Map<String,String> destLanguages = new HashMap<String, String>();
+        destLanguages.put("eng","english");
+        destLanguages.put("pol","polish");
+        return destLanguages;
     }
 }

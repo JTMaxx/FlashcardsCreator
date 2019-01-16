@@ -8,16 +8,14 @@
     <form action="#" th:action="@{/fcmaker}" th:object="${fcmaker}" method="post"> <!-- here must be fcmaker, not: fcMaker -->
         <p>Create a flashcard</p>
         <p>Phrase to translate:<input type="text" th:field="*{phraseToTranslate}"/></p>
-        <ul style="list-style: none;">
-            <li th:each="transWay: ${transAllWays}">
-                <input type="radio"
-                       th:field="*{selectedTransWay}"
-                       th:value="${transWay}" />
-                <label
-                        th:for="${#ids.prev('selectedTransWay')}"
-                        th:text="${transWay}"></label>
-            </li>
-        </ul>
+        <select th:field="*{fromLanguage}">
+            <option th:each="entry : ${fromLanguages.entrySet()}" th:value="${entry.key}" th:text="${entry.value}">
+            </option>
+        </select>
+        <select th:field="*{destLanguage}">
+            <option th:each="entry : ${destLanguages.entrySet()}" th:value="${entry.key}" th:text="${entry.value}">
+            </option>
+        </select>
         <p><input type="submit" value="Submit" /></p>
     </form>
 </body>
