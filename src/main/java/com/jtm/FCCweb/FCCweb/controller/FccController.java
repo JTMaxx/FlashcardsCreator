@@ -31,7 +31,7 @@ public class FccController {
 
     @PostMapping("/fcmaker")
     public String fcMakerSubmit(@ModelAttribute FCmaker fcMaker) {
-        flashcardsCreator.getDataFromJSON(glosbeAPItranslationModel);
+        //flashcardsCreator.getDataFromJSON(glosbeAPItranslationModel);
         fcrepository.save(fcMaker);
         return "result";
     }
