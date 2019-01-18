@@ -22,7 +22,8 @@ public class FCmaker {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String phraseToTranslate;
-    private String selectedTransWay;
+    private String fromLanguage;
+    private String destLanguage;
 
     private String translation;
     private String meaning;
