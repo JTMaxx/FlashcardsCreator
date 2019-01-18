@@ -9,11 +9,6 @@ public class Main {
 	public static void main(String[] args) {
 
 		SpringApplication.run(Main.class, args);
-
-		//FlashcardsCreator flashcardsCreator = new FlashcardsCreator();
-		//communicationWithUser.setTranslationWay();
-
-		//flashcardsCreator.printFlashcards(communicationWithUser.glosbeAPItranslationModel, flashcardsCreator.websiteProvider);
 	}
 
 }
