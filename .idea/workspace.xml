@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe35837c-3b9e-4d1d-bc57-31c9e8aea9fd" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/CommunicationWithUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/CommunicationWithUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/FlashcardsCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/FlashcardsCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/GlosbeAPItranslationModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/controller/FccController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/controller/FccController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/model/FCmaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/model/FCmaker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/fcmaker.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/fcmaker.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -53,16 +57,16 @@
     <session id="1530538147">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="14" />
+          <entry key="project.closed" value="15" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.11" value="1" />
-          <entry key="project.open.time.12" value="6" />
+          <entry key="project.open.time.12" value="7" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.3" value="3" />
           <entry key="project.open.time.57" value="1" />
-          <entry key="project.opened" value="15" />
+          <entry key="project.opened" value="16" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -83,8 +87,8 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="637" />
-          <entry key="java" value="1663" />
+          <entry key="html" value="646" />
+          <entry key="java" value="1762" />
           <entry key="properties" value="21" />
           <entry key="txt" value="3" />
           <entry key="xml" value="11" />
@@ -92,8 +96,8 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="637" />
-          <entry key="JAVA" value="1663" />
+          <entry key="HTML" value="646" />
+          <entry key="JAVA" value="1762" />
           <entry key="PLAIN_TEXT" value="3" />
           <entry key="Properties" value="21" />
           <entry key="XML" value="11" />
@@ -103,14 +107,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/controller/FccController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="665">
-              <caret line="52" column="40" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="40" />
+            <state relative-caret-position="480">
+              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1711#1726#0" expanded="true" />
+                <element signature="e#1759#1775#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -125,14 +129,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fcmaker.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="20" column="44" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
-              <folding>
-                <element signature="n#style#0;n#ul#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="300">
+              <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -147,19 +148,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/GlosbeAPItranslationModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/model/FCmaker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+            <state relative-caret-position="460">
+              <caret line="23" column="37" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -170,8 +162,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/FlashcardsCreator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="88" lean-forward="true" selection-start-line="88" selection-end-line="88" />
+            <state relative-caret-position="1954">
+              <caret line="107" column="58" selection-start-line="107" selection-start-column="58" selection-end-line="107" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -183,7 +175,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/CommunicationWithUser.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="100">
-              <caret line="5" column="54" selection-start-line="5" selection-start-column="54" selection-end-line="5" selection-end-column="54" />
+              <caret line="5" column="56" selection-end-line="40" />
             </state>
           </provider>
         </entry>
@@ -251,15 +243,15 @@
         <option value="$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/repository/FCrepository.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/JSONmodel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/GlosbeAPItranslationModel.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/result.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/CommunicationWithUser.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/fcmaker.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/GlosbeAPItranslationModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/model/FCmaker.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/CommunicationWithUser.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/FlashcardsCreator.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/controller/FccController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/model/FCmaker.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/fcmaker.html" />
       </list>
     </option>
   </component>
@@ -269,7 +261,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
@@ -279,6 +271,17 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="FCCweb" type="1abcf292:AndroidViewProjectNode" />
+              <item name="HttpRequests" type="e9137016:NonAndroidModuleNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -399,17 +402,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="FCCweb" type="1abcf292:AndroidViewProjectNode" />
-              <item name="HttpRequests" type="e9137016:NonAndroidModuleNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -417,7 +409,7 @@
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547284091275" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547801666047" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="JAVA&#10;JSON" />
     <property name="findjar.last.used.dir" value="$PROJECT_DIR$/lib" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -540,10 +532,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="953" y="0" width="974" height="1047" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.5940919" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.59381664" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -552,12 +544,12 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.4989154" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.9104478" visible="true" weight="0.7579408" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.9104478" weight="0.7505423" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.489154" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49946696" weight="0.26177436" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.49946696" visible="true" weight="0.25921908" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.08955224" side_tool="true" weight="0.81127983" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.3275488" />
@@ -689,6 +681,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/GlosbeAPItranslationModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="14" lean-forward="true" selection-end-line="14" />
+          <folding>
+            <element signature="e#0#351#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/CommunicationWithUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="56" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -696,48 +705,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/CommunicationWithUser.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fcmaker.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="54" selection-start-line="5" selection-start-column="54" selection-end-line="5" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/FlashcardsCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="88" lean-forward="true" selection-start-line="88" selection-end-line="88" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/controller/FccController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="52" column="40" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1711#1726#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/model/FCmaker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/GlosbeAPItranslationModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+        <state relative-caret-position="300">
+          <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -748,12 +719,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/fcmaker.html">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/model/FCmaker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="20" column="44" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
+        <state relative-caret-position="460">
+          <caret line="23" column="37" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
           <folding>
-            <element signature="n#style#0;n#ul#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/FlashcardsCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1954">
+          <caret line="107" column="58" selection-start-line="107" selection-start-column="58" selection-end-line="107" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jtm/FCCweb/FCCweb/controller/FccController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1759#1775#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -19,76 +19,76 @@ public class FlashcardsCreator {
     FCmaker fcMaker = new FCmaker();
 
 
-    String getJsonTranslationContent(GlosbeAPItranslationModel apiParameters, WebsiteProvider websiteProvider) {
+    String getJsonTranslationContent(FCmaker fcMaker, WebsiteProvider websiteProvider) {
         /*  To get data visit /gapi/{functionName}[?[{functionParameter1}={value}
              [&{functionParameter2}={value}[&{functionParameter3}={value}...]]]] page.
              Example: Translate Polish 'witaj' into English, output format is json:
              https://glosbe.com/gapi/translate?from=pol&dest=eng&format=json&phrase=witaj&pretty=true */
 
-        String jsonURL = "https://www.glosbe.com/gapi/translate?from=" + apiParameters.getFrom() + "&dest=" +
-                apiParameters.getDest() + "&format=json&phrase=" + fcMaker.getPhraseToTranslate() + "&pretty=true";
+        String jsonURL = "https://www.glosbe.com/gapi/translate?from=" + fcMaker.getFromLanguage() + "&dest=" +
+                fcMaker.getDestLanguage() + "&format=json&phrase=" + fcMaker.getPhraseToTranslate() + "&pretty=true";
         System.out.println("\ntranslation URL: " + jsonURL + "\n"); // only for debugging
         return websiteProvider.getUrlContents(jsonURL);
     }
 
-    String getJsonExampleContent(GlosbeAPItranslationModel apiParameters, WebsiteProvider websiteProvider) {
-        String jsonURL = "https://glosbe.com/gapi/tm?from=" + apiParameters.getFrom() + "&dest=" + apiParameters.getDest()
+    String getJsonExampleContent(FCmaker fcMaker, WebsiteProvider websiteProvider) {
+        String jsonURL = "https://glosbe.com/gapi/tm?from=" + fcMaker.getFromLanguage() + "&dest=" + fcMaker.getDestLanguage()
                 + "&format=json&phrase=" + fcMaker.getPhraseToTranslate() + "&page=1&pretty=true";
         System.out.println("\nexample URL: " + jsonURL + "\n"); // only for debugging
         return websiteProvider.getUrlContents(jsonURL);
 
     }
-    void saveFlashcards(GlosbeAPItranslationModel glosbeAPItranslationModel, WebsiteProvider websiteProvider) {
-        getDataFromJSON(glosbeAPItranslationModel);
+    void saveFlashcards(FCmaker fcMaker, WebsiteProvider websiteProvider) {
+        getDataFromJSON(fcMaker);
 
         //todo: szybsze rozwiązanie: https://stackoverflow.com/questions/46898/how-to-efficiently-iterate-over-each-entry-in-a-java-map
-        Set set = getExamples(glosbeAPItranslationModel, websiteProvider).entrySet();
-        Iterator iterator = set.iterator();
+//        Set set = getExamples(fcMaker, websiteProvider).entrySet();
+//        Iterator iterator = set.iterator();
 //        while(iterator.hasNext()) {
 //            Map.Entry mentry = (Map.Entry)iterator.next();
 //            fcMaker.addExample(mentry.getKey(), mentry.getValue());
 //        }
     }
 
-    void printFlashcards(GlosbeAPItranslationModel glosbeAPItranslationModel, WebsiteProvider websiteProvider) {
-
-        while (true) {
-            //while (fcMaker.getPhraseToTranslate() == null) {}
-                getDataFromJSON(glosbeAPItranslationModel);
-                System.out.println("\n------------------------------------\n\n FRONT SIDE:\n");
-                System.out.println("\t" + fcMaker.getPhraseToTranslate()); // print source phrase
-
-                //todo: szybsze rozwiązanie: https://stackoverflow.com/questions/46898/how-to-efficiently-iterate-over-each-entry-in-a-java-map
-                Set set = getExamples(glosbeAPItranslationModel, websiteProvider).entrySet();
-                Iterator iterator = set.iterator();
-                while(iterator.hasNext()) {
-                    Map.Entry mentry = (Map.Entry)iterator.next();
-                    System.out.println("\nexample: " + mentry.getKey());
-                }
-                
-                System.out.println("\n\n BACK SIDE:\n\n");
-                System.out.println("\t" + fcMaker.getTranslation()); //print translation
-
-                if (!(glosbeAPItranslationModel.getFrom().equals("pol"))) {
-                    System.out.println("\nmeaning: " + fcMaker.getMeaning()); //print meaning
-                }
-
-                iterator = set.iterator();
-                while(iterator.hasNext()) {
-                    Map.Entry mentry = (Map.Entry)iterator.next();
-                    System.out.println("\nexample: " + mentry.getValue()); //print example
-
-                }
-
-
-
-
-            System.out.println("\n----------------------------------");
-
-        }
-
-    }
-  public void getDataFromJSON(GlosbeAPItranslationModel glosbeAPItranslationModel) {
+//    void printFlashcards(GlosbeAPItranslationModel glosbeAPItranslationModel, WebsiteProvider websiteProvider) {
+//
+//        while (true) {
+//            //while (fcMaker.getPhraseToTranslate() == null) {}
+//                getDataFromJSON(glosbeAPItranslationModel);
+//                System.out.println("\n------------------------------------\n\n FRONT SIDE:\n");
+//                System.out.println("\t" + fcMaker.getPhraseToTranslate()); // print source phrase
+//
+//                //todo: szybsze rozwiązanie: https://stackoverflow.com/questions/46898/how-to-efficiently-iterate-over-each-entry-in-a-java-map
+//                Set set = getExamples(glosbeAPItranslationModel, websiteProvider).entrySet();
+//                Iterator iterator = set.iterator();
+//                while(iterator.hasNext()) {
+//                    Map.Entry mentry = (Map.Entry)iterator.next();
+//                    System.out.println("\nexample: " + mentry.getKey());
+//                }
+//
+//                System.out.println("\n\n BACK SIDE:\n\n");
+//                System.out.println("\t" + fcMaker.getTranslation()); //print translation
+//
+//                if (!(glosbeAPItranslationModel.getFrom().equals("pol"))) {
+//                    System.out.println("\nmeaning: " + fcMaker.getMeaning()); //print meaning
+//                }
+//
+//                iterator = set.iterator();
+//                while(iterator.hasNext()) {
+//                    Map.Entry mentry = (Map.Entry)iterator.next();
+//                    System.out.println("\nexample: " + mentry.getValue()); //print example
+//
+//                }
+//
+//
+//
+//
+//            System.out.println("\n----------------------------------");
+//
+//        }
+//
+//    }
+  public void getDataFromJSON(FCmaker fcMaker) {
 
         //fcMaker.getPhraseToTranslate(); //todo: tu było wcześniej getPhraseToTranslate from communicationWithUser, co użyć teraz w zamian?
         ObjectMapper translationMapper = new ObjectMapper();
@@ -101,7 +101,7 @@ public class FlashcardsCreator {
 
         try {
 
-            JsonNode translationRoot = translationMapper.readTree(getJsonTranslationContent(glosbeAPItranslationModel, websiteProvider));
+            JsonNode translationRoot = translationMapper.readTree(getJsonTranslationContent(fcMaker, websiteProvider));
 
             JsonNode tuc = translationRoot.get("tuc"); // get() calls specific value in the array /tuc/0/meanings/0/text
             JsonNode phrase = tuc.get(0).get("phrase");
@@ -119,14 +119,14 @@ public class FlashcardsCreator {
     }
     }
 
-    Map<String, String> getExamples(GlosbeAPItranslationModel glosbeAPItranslationModel, WebsiteProvider websiteProvider) {
+    Map<String, String> getExamples(FCmaker fcMaker, WebsiteProvider websiteProvider) {
         Map<String, String> examples = new HashMap();
 
         ObjectMapper exampleMapper = new ObjectMapper();
         exampleMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         try {
-            JsonNode exampleRoot = exampleMapper.readTree(getJsonExampleContent(glosbeAPItranslationModel, websiteProvider));
+            JsonNode exampleRoot = exampleMapper.readTree(getJsonExampleContent(fcMaker, websiteProvider));
             for (int i = 0; i < 3; i++) {
                 examples.put(exampleRoot.get("examples").get(i).get("first").asText(), exampleRoot.get("examples").get(i).get("second").asText());
             }

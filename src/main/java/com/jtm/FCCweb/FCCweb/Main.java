@@ -10,9 +10,8 @@ public class Main {
 
 		SpringApplication.run(Main.class, args);
 
-		CommunicationWithUser communicationWithUser = new CommunicationWithUser();
 		//FlashcardsCreator flashcardsCreator = new FlashcardsCreator();
-		communicationWithUser.setTranslationWay();
+		//communicationWithUser.setTranslationWay();
 
 		//flashcardsCreator.printFlashcards(communicationWithUser.glosbeAPItranslationModel, flashcardsCreator.websiteProvider);
 	}
