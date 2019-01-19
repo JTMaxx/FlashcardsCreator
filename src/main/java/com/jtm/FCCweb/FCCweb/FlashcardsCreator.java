@@ -7,9 +7,7 @@ import com.jtm.FCCweb.FCCweb.model.FCmaker;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 import static org.apache.commons.lang.StringEscapeUtils.unescapeXml;
 
@@ -27,19 +25,25 @@ public class FlashcardsCreator {
 
         String jsonURL = "https://www.glosbe.com/gapi/translate?from=" + fcMaker.getFromLanguage() + "&dest=" +
                 fcMaker.getDestLanguage() + "&format=json&phrase=" + fcMaker.getPhraseToTranslate() + "&pretty=true";
-        System.out.println("\ntranslation URL: " + jsonURL + "\n"); // only for debugging
+        System.out.println("\nDEBUG: translation URL: " + jsonURL + "\n");
         return websiteProvider.getUrlContents(jsonURL);
+    }
+
+    public void setExamplesURL(FCmaker fcMaker) {
+        fcMaker.setExamplesURL("https://glosbe.com/gapi/tm?from=" + fcMaker.getFromLanguage() + "&dest=" + fcMaker.getDestLanguage()
+                + "&format=json&phrase=" + fcMaker.getPhraseToTranslate() + "&page=1&pretty=true");
+        System.out.println("\nDEBUG: example URL set\n");
     }
 
     String getJsonExampleContent(FCmaker fcMaker, WebsiteProvider websiteProvider) {
         String jsonURL = "https://glosbe.com/gapi/tm?from=" + fcMaker.getFromLanguage() + "&dest=" + fcMaker.getDestLanguage()
                 + "&format=json&phrase=" + fcMaker.getPhraseToTranslate() + "&page=1&pretty=true";
-        System.out.println("\nexample URL: " + jsonURL + "\n"); // only for debugging
+        System.out.println("\nDEBUG: example URL: " + jsonURL + "\n");
         return websiteProvider.getUrlContents(jsonURL);
 
     }
     void saveFlashcards(FCmaker fcMaker, WebsiteProvider websiteProvider) {
-        getDataFromJSON(fcMaker);
+        setDataFromJSON(fcMaker);
 
         //todo: szybsze rozwiązanie: https://stackoverflow.com/questions/46898/how-to-efficiently-iterate-over-each-entry-in-a-java-map
 //        Set set = getExamples(fcMaker, websiteProvider).entrySet();
@@ -54,7 +58,7 @@ public class FlashcardsCreator {
 //
 //        while (true) {
 //            //while (fcMaker.getPhraseToTranslate() == null) {}
-//                getDataFromJSON(glosbeAPItranslationModel);
+//                setDataFromJSON(glosbeAPItranslationModel);
 //                System.out.println("\n------------------------------------\n\n FRONT SIDE:\n");
 //                System.out.println("\t" + fcMaker.getPhraseToTranslate()); // print source phrase
 //
@@ -88,9 +92,8 @@ public class FlashcardsCreator {
 //        }
 //
 //    }
-  public void getDataFromJSON(FCmaker fcMaker) {
-
-        //fcMaker.getPhraseToTranslate(); //todo: tu było wcześniej getPhraseToTranslate from communicationWithUser, co użyć teraz w zamian?
+    //todo: to nie powinno byc public, ale inaczej nie jest widziane w FccController
+    public void setDataFromJSON(FCmaker fcMaker) {
         ObjectMapper translationMapper = new ObjectMapper();
 
         // Don't throw an exception when json has extra fields you are
@@ -118,8 +121,8 @@ public class FlashcardsCreator {
         e.printStackTrace();
     }
     }
-
-    Map<String, String> getExamples(FCmaker fcMaker, WebsiteProvider websiteProvider) {
+    //todo: to nie powinno byc public, ale inaczej nie jest widziane w FccController
+    public Map<String, String> getExamples(FCmaker fcMaker) {
         Map<String, String> examples = new HashMap();
 
         ObjectMapper exampleMapper = new ObjectMapper();

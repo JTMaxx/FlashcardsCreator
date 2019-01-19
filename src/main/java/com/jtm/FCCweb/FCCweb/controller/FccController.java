@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -31,7 +29,9 @@ public class FccController {
 
     @PostMapping("/fcmaker")
     public String fcMakerSubmit(@ModelAttribute FCmaker fcMaker) {
-        flashcardsCreator.getDataFromJSON(fcMaker); //czy to właściwy fcMaker?
+        flashcardsCreator.setDataFromJSON(fcMaker);
+        //flashcardsCreator.getExamples(fcMaker);
+        flashcardsCreator.setExamplesURL(fcMaker);
         fcrepository.save(fcMaker);
         return "result";
     }
