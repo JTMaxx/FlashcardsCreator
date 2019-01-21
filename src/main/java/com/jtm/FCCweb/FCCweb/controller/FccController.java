@@ -33,14 +33,14 @@ public class FccController {
         //flashcardsCreator.getExamples(fcMaker);
         flashcardsCreator.setExamplesURL(fcMaker);
         fcrepository.save(fcMaker);
-        return "result";
+        return "flashcards";
     }
 
-    @GetMapping("/result")
+    @GetMapping("/flashcards")
     public String getFlashcards(Model model) {
         model.addAttribute("flashcards", fcrepository.findAll()); //Ten atrybut jest potem używany przez thymeleaf do wyswietlania wynikow
         // w pierwszym argumentem w addAtribute() jest nazwa nowej zmiennej, a w drugim jej inicjalizacja
-        return "result";
+        return "flashcards";
     }
 
     @ModelAttribute("fromLanguages")

@@ -21,7 +21,7 @@ public class FCmaker {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     private String phraseToTranslate;
     private String fromLanguage;
     private String destLanguage;
