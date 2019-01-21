@@ -7,7 +7,28 @@
 <body>
 <h1>Result</h1>
 <!--<p th:text="'PtT: ' + ${fcmaker.phraseToTranslate}" />-->
-<!--<p th:text="'content: ' + ${greeting.content}" />-->
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>phraseToTranslate</th>
+        <!--<th>Nazwisko</th>-->
+        <!--<th>Rok urodzenia</th>-->
+        <!--<th>Klasa szkolna</th>-->
+    </tr>
+    <tr th:each="fcmaker : ${flashcards}"> <!--zwykla petla for ... each -->
+        <td th:text="${fcmaker.id}">ID</td>
+        <td th:text="${fcmaker.phraseToTranslate}">xxxphrase to translatexxx</td>
+        <!--<td th:text="${customer.lastName}">last name</td>-->
+        <!--<td th:text="${customer.birthYear}">birth year</td>-->
+        <!--<td th:text="${customer.schoolForm}">school form</td>-->
+        <!--<td th:text="${customer.schoolFormType}">school form type</td>-->
+        <!--<td th:text="${customer.email}">e-mail address</td>-->
+        <!--<td th:text="${customer.childDescription}">Child description</td>-->
+    </tr>
+</table>
+
+
 <a href="/fcmaker">Submit another flashcard</a>
 </body>
 </html>
