@@ -110,9 +110,7 @@ public class FlashcardsCreator {
             JsonNode phrase = tuc.get(0).get("phrase");
             fcMaker.setTranslation(phrase.get("text").asText());
             int enMeaningIndex = 0;
-            //for (enMeaningIndex = 0; !(tuc.get(0).get("meanings").get(enMeaningIndex).get("language").asText().equals("en")); enMeaningIndex++) {
-            //   System.out.println("loop pass" + enMeaningIndex);
-            //}
+            for (enMeaningIndex = 0; !(tuc.get(0).get("meanings").get(enMeaningIndex).get("language").asText().equals("en")); enMeaningIndex++) {} //skips other meanings than english meanings
             fcMaker.setMeaning(unescapeXml(tuc.get(0).get("meanings").get(enMeaningIndex).get("text").asText())); // unescapeXml skips entities like '&quot'
 
 
